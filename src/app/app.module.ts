@@ -5,13 +5,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CreateComponent } from './quote/create/create.component';
 import { ViewComponent } from './quote/view/view.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
-    ViewComponent
+    ViewComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule
