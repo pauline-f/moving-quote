@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2">
     <h2>Create a quote</h2>
-    <form [formGroup]="createForm" (ngSubmit)="calculateQuote()">
+    <form [formGroup]="createForm" (ngSubmit)="onSaveData()">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" class="form-control" formControlName="name">

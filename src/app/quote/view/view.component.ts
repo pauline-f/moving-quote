@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Quote } from '../../models/Quote.model';
+
 
 @Component({
   selector: 'app-view',
@@ -16,11 +18,23 @@ export class ViewComponent implements OnInit {
   piano: string;
   packHelpful: string;
   price: string;
+
+  quote: Quote;
   
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe( params => {
+      console.log(params);
+      this.quote = params['newQuote'];
+      console.log(this.quote);
+      console.log(this.quote.name);
+
+    });
+    //this.quote = this.route.snapshot.params.object;
+
+    
     this.name = this.route.snapshot.paramMap.get('name');
     this.mail = this.route.snapshot.paramMap.get('mail');
     this.address = this.route.snapshot.paramMap.get('address');

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { QuotesService } from '../../services/quotes.service';
+import { Quote } from '../../models/Quote.model';
 
 @Component({
   selector: 'app-create',
@@ -21,7 +23,8 @@ export class CreateComponent implements OnInit {
   totalPrice: number;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private quotesService: QuotesService) { }
 
   ngOnInit() {
     this.initForm();
@@ -40,7 +43,7 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  saveData() {
+  onSaveData() {
     const name = this.createForm.get('name').value;
     const mail = this.createForm.get('mail').value;
     const address = this.createForm.get('address').value;
@@ -50,6 +53,9 @@ export class CreateComponent implements OnInit {
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
 
+    const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful)
+    this.quotesService.createNewQuote(newQuote);
+
     this.name = name;
     this.mail = mail;
     this.address = address;
@@ -58,11 +64,15 @@ export class CreateComponent implements OnInit {
     this.atticCellar = atticCellar;
     this.piano = piano;
     this.packHelpful = packHelpful;
+
+    this.calculateQuote();
+
+    this.router.navigate(['quote/view', {newQuote}]);
   }
 
   calculateQuote() {
     console.log("coucou");
-    this.saveData();
+    //this.onSaveData();
 
     console.log("price distance: " + this.calculatePriceDistance(this.distance));
     console.log("total surface: " + this.calculateTotalSurface());
@@ -72,10 +82,11 @@ export class CreateComponent implements OnInit {
 
     console.log(this.totalPrice);
 
+
     
-    this.router.navigate(['quote/view', {name:this.name, mail:this.mail, address:this.address, distance:this.distance, 
-                                        surface:this.surface, atticCellar:this.atticCellar, piano:this.piano, 
-                                        packHelpful:this.packHelpful, price:this.totalPrice}]);
+    //this.router.navigate(['quote/view', {name:this.name, mail:this.mail, address:this.address, distance:this.distance, 
+    //                                    surface:this.surface, atticCellar:this.atticCellar, piano:this.piano, 
+    //                                    packHelpful:this.packHelpful, price:this.totalPrice}]);
   }
 
   calculatePriceDistance(distance:number) {
