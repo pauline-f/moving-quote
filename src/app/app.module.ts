@@ -12,7 +12,7 @@ import { QuotesService } from './services/quotes.service';
 
 const appRoutes: Routes = [
   { path:'quote/create', component:CreateComponent },
-  { path:'quote/view', component:ViewComponent }
+  { path:'quote/view/:id', component:ViewComponent }
 ]
 
 

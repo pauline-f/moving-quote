@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quote } from '../../models/Quote.model';
+import { QuotesService } from '../../services/quotes.service';
 
 
 @Component({
@@ -18,33 +19,30 @@ export class ViewComponent implements OnInit {
   piano: string;
   packHelpful: string;
   price: string;
+  id: string;
 
   quote: Quote;
   
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private quotesService: QuotesService) { }
 
   ngOnInit() {
-    this.route.params.subscribe( params => {
-      console.log(params);
-      this.quote = params['newQuote'];
-      console.log(this.quote);
-      console.log(this.quote.name);
-
-    });
-    //this.quote = this.route.snapshot.params.object;
-
     
-    this.name = this.route.snapshot.paramMap.get('name');
-    this.mail = this.route.snapshot.paramMap.get('mail');
-    this.address = this.route.snapshot.paramMap.get('address');
-    this.distance = this.route.snapshot.paramMap.get('distance');
-    this.surface = this.route.snapshot.paramMap.get('surface');
-    this.atticCellar = this.route.snapshot.paramMap.get('atticCellar');
-    this.piano = this.route.snapshot.paramMap.get('piano');
-    this.packHelpful = this.route.snapshot.paramMap.get('packHelpful');
-    this.price = this.route.snapshot.paramMap.get('price');
-    console.log(this.distance);
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.quotesService.getAQuote(this.id).then(res => {
+      console.log(res.name);
+      this.name = res.name;
+      this.mail = res.mail;
+      this.address = res.address;
+      this.distance = res.distance;
+      this.surface = res.surface;
+      this.atticCellar = res.atticCellar;
+      this.piano = res.piano;
+      this.packHelpful = res.packHelpful;
+      this.price = res.price;
+  });
+    console.log(this.id);
     
   }
 }

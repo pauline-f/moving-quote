@@ -1,48 +1,51 @@
 import { Injectable } from '@angular/core';
 import { Quote } from '../models/Quote.model';
-import { Subject } from 'rxjs/Subject';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class QuotesService {
 
-  quotes: Quote[] = [];
-  quotesSubject = new Subject<Quote[]>();
-
   constructor() { }
 
-  emitQuotes() {
-    this.quotesSubject.next(this.quotes);
-  }
-
-  saveQuotes() {
-    //firebase
-  }
-
   getQuotes() {
-    //firebase
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('quote').once('value').then (
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
 
-  getAQuote(id:number) {
-    //Promise + firebase
+  getAQuote(id:string) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('quote/'+id).once('value').then (
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
 
   createNewQuote(newQuote:Quote) {
-    this.quotes.push(newQuote);
-    this.saveQuotes();
-    this.emitQuotes();
-  }
-
-  removeQuote(quote:Quote) {
-    const quoteIndexToRemove = this.quotes.findIndex(
-      (quoteEl) => {
-        if(quoteEl === quote) {
-          return true;
-        }
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('quote').push(newQuote).then (
+          (data) => {
+            resolve(data.key);
+          }, (error) => {
+            reject(error);
+          }
+        );
       }
     );
-    this.quotes.splice(quoteIndexToRemove, 1);
-    this.saveQuotes();
-    this.emitQuotes();
   }
-
 }

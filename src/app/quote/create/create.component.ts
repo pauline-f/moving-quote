@@ -54,25 +54,19 @@ export class CreateComponent implements OnInit {
     const packHelpful = this.createForm.get('packHelpful').value;
 
     const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful)
-    this.quotesService.createNewQuote(newQuote);
-
-    this.name = name;
-    this.mail = mail;
-    this.address = address;
-    this.distance = distance;
-    this.surface = surface;
-    this.atticCellar = atticCellar;
-    this.piano = piano;
-    this.packHelpful = packHelpful;
+    this.quotesService.createNewQuote(newQuote)
+    .then(res => {
+      console.log(res);
+      this.router.navigate(['/quote', 'view', res]);
+  })
+    .catch(err => {
+      console.log("Error while inserting quote", err);
+    });
 
     this.calculateQuote();
-
-    this.router.navigate(['quote/view', {newQuote}]);
   }
 
   calculateQuote() {
-    console.log("coucou");
-    //this.onSaveData();
 
     console.log("price distance: " + this.calculatePriceDistance(this.distance));
     console.log("total surface: " + this.calculateTotalSurface());
@@ -81,12 +75,6 @@ export class CreateComponent implements OnInit {
     this.totalPrice = this.calculateNbCar() * this.calculatePriceDistance(this.distance);
 
     console.log(this.totalPrice);
-
-
-    
-    //this.router.navigate(['quote/view', {name:this.name, mail:this.mail, address:this.address, distance:this.distance, 
-    //                                    surface:this.surface, atticCellar:this.atticCellar, piano:this.piano, 
-    //                                    packHelpful:this.packHelpful, price:this.totalPrice}]);
   }
 
   calculatePriceDistance(distance:number) {
