@@ -10,9 +10,14 @@ import { Router } from '@angular/router';
 export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
+  name: string;
+  mail: string;
+  address: string;
   distance: number;
   surface: number;
   atticCellar: number;
+  piano: boolean;
+  packHelpful: boolean;
   totalPrice: number;
 
   constructor(private formBuilder: FormBuilder,
@@ -45,9 +50,14 @@ export class CreateComponent implements OnInit {
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
 
+    this.name = name;
+    this.mail = mail;
+    this.address = address;
     this.distance = distance;
     this.surface = surface;
     this.atticCellar = atticCellar;
+    this.piano = piano;
+    this.packHelpful = packHelpful;
   }
 
   calculateQuote() {
@@ -62,9 +72,10 @@ export class CreateComponent implements OnInit {
 
     console.log(this.totalPrice);
 
-    let dist = this.distance;
-    let surf = this.surface;
-    this.router.navigate(['quote/view', {distance:dist, surface:surf}]);
+    
+    this.router.navigate(['quote/view', {name:this.name, mail:this.mail, address:this.address, distance:this.distance, 
+                                        surface:this.surface, atticCellar:this.atticCellar, piano:this.piano, 
+                                        packHelpful:this.packHelpful, price:this.totalPrice}]);
   }
 
   calculatePriceDistance(distance:number) {
