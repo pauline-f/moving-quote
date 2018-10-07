@@ -8,6 +8,7 @@ import { CreateComponent } from './quote/create/create.component';
 import { ViewComponent } from './quote/view/view.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuotesService } from './services/quotes.service';
 
 const appRoutes: Routes = [
   { path:'quote/create', component:CreateComponent },
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [QuotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
