@@ -11,8 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuotesService } from './services/quotes.service';
 import { DetailsComponent } from './quote/view/details/details.component';
 import { ListComponent } from './quote/list/list.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { UserService } from './services/user.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
+  { path:'user/register', component:RegisterComponent },
+  { path:'user/login', component:LoginComponent },
   { path:'quote/create', component:CreateComponent },
   { path:'quote/view/:id', component:ViewComponent },
   { path:'quote/view/details/:id', component:DetailsComponent }
@@ -26,7 +32,9 @@ const appRoutes: Routes = [
     ViewComponent,
     HeaderComponent,
     DetailsComponent,
-    ListComponent
+    ListComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [QuotesService],
-  bootstrap: [AppComponent]
+  providers: [QuotesService,
+              UserService,
+              AuthGuardService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
