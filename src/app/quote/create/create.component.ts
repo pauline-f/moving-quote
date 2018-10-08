@@ -53,7 +53,7 @@ export class CreateComponent implements OnInit {
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
 
-    this.calculateQuote(distance, surface, atticCellar, piano);
+    this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
 
     const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful, this.totalPrice)
     this.quotesService.createNewQuote(newQuote)
@@ -68,36 +68,6 @@ export class CreateComponent implements OnInit {
     
   }
 
-  calculateQuote(distance:number, surface:number, atticCellar:number, piano:boolean) {
-    const surfaceTotal = this.calculateTotalSurface(surface, atticCellar);
-    console.log("price distance: " + this.calculatePriceDistance(distance));
-    console.log("total surface: " + surfaceTotal);
-    console.log("nb car: " + this.calculateNbCar(surfaceTotal));
-
-    this.totalPrice = this.calculateNbCar(surfaceTotal) * this.calculatePriceDistance(distance);
-    if(piano) {
-      this.totalPrice += 5000;
-    }
-
-    console.log(this.totalPrice);
-  }
-
-  calculatePriceDistance(distance:number) {
-    if (distance < 50) {
-      return 1000 + (distance * 10);
-    } else if ((distance >= 50) && (distance < 100)) {
-      return 5000 + (distance * 8);
-    } else {
-      return 10000 + (distance * 7);
-    }
-  }
-
-  calculateTotalSurface(surface:number, atticCellar:number) {
-    return (atticCellar * 2) + surface;
-  }
-
-  calculateNbCar(surfaceTotal:number) {
-    return (Math.trunc(surfaceTotal / 50)) + 1;
-  }
+  
 
 }

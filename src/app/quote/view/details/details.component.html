@@ -1,0 +1,39 @@
+<div>
+  <h2>Quote details</h2>
+
+  <div>
+    <p>Offer number: {{ offerNum }}</p>
+  </div>
+
+  <div>
+    <p>Name: {{ name }}</p>
+    <p>Mail: {{ mail }}</p>
+    <p>Address: {{ address }}</p>
+  </div>
+
+  <div>
+    <p>Distance: {{ distance }} km</p>
+    <p>Estimated price: {{ priceDistance }} kr</p>
+  </div>
+
+  <div>
+    <p>Surface: {{ surface }}</p>
+    <p>Attic / Cellar: {{ atticCellar }}</p>
+    <p>Estimated surface total: {{ surfaceTotal }}</p>
+    <p>(Attic and cellar count twice)</p>
+  </div>
+
+  <div>
+    <p>Estimated cars: {{ nbCar }}</p>
+  </div>
+
+  <div>
+      <input type="checkbox" id="piano" [checked]=piano [disabled]=true> Piano
+      <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
+  </div>
+
+  <div>
+    <h4>Total price: {{ price }}</h4>
+  </div>
+  
+</div>
