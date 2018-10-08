@@ -47,13 +47,15 @@ export class CreateComponent implements OnInit {
     const name = this.createForm.get('name').value;
     const mail = this.createForm.get('mail').value;
     const address = this.createForm.get('address').value;
-    const distance = this.createForm.get('distance').value;
-    const surface = this.createForm.get('surface').value;
-    const atticCellar = this.createForm.get('atticCellar').value;
+    const distance = parseInt(this.createForm.get('distance').value);
+    const surface = parseInt(this.createForm.get('surface').value);
+    const atticCellar = parseInt(this.createForm.get('atticCellar').value);
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
 
-    const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful)
+    this.calculateQuote(distance, surface, atticCellar, piano);
+
+    const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful, this.totalPrice)
     this.quotesService.createNewQuote(newQuote)
     .then(res => {
       console.log(res);
@@ -63,16 +65,19 @@ export class CreateComponent implements OnInit {
       console.log("Error while inserting quote", err);
     });
 
-    this.calculateQuote();
+    
   }
 
-  calculateQuote() {
+  calculateQuote(distance:number, surface:number, atticCellar:number, piano:boolean) {
+    const surfaceTotal = this.calculateTotalSurface(surface, atticCellar);
+    console.log("price distance: " + this.calculatePriceDistance(distance));
+    console.log("total surface: " + surfaceTotal);
+    console.log("nb car: " + this.calculateNbCar(surfaceTotal));
 
-    console.log("price distance: " + this.calculatePriceDistance(this.distance));
-    console.log("total surface: " + this.calculateTotalSurface());
-    console.log("nb car: " + this.calculateNbCar());
-
-    this.totalPrice = this.calculateNbCar() * this.calculatePriceDistance(this.distance);
+    this.totalPrice = this.calculateNbCar(surfaceTotal) * this.calculatePriceDistance(distance);
+    if(piano) {
+      this.totalPrice += 5000;
+    }
 
     console.log(this.totalPrice);
   }
@@ -87,12 +92,12 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  calculateTotalSurface() {
-    return (this.atticCellar * 2) + this.surface;
+  calculateTotalSurface(surface:number, atticCellar:number) {
+    return (atticCellar * 2) + surface;
   }
 
-  calculateNbCar() {
-    return (Math.trunc(this.calculateTotalSurface() / 50)) + 1;
+  calculateNbCar(surfaceTotal:number) {
+    return (Math.trunc(surfaceTotal / 50)) + 1;
   }
 
 }
