@@ -29,16 +29,16 @@ export class ViewComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
-      console.log(res.name);
-      this.name = res.name;
-      this.mail = res.mail;
-      this.address = res.address;
-      this.distance = parseInt(res.distance);
-      this.surface = parseInt(res.surface);
-      this.atticCellar = parseInt(res.atticCellar);
-      this.piano = res.piano;
-      this.packHelpful = res.packHelpful;
-      this.price = res.price;
+      //console.log(res.name);
+      //this.name = res.name;
+      //this.mail = res.mail;
+      //this.address = res.address;
+      //this.distance = parseInt(res.distance);
+      //this.surface = parseInt(res.surface);
+      //this.atticCellar = parseInt(res.atticCellar);
+      //this.piano = res.piano;
+      //this.packHelpful = res.packHelpful;
+      //this.price = res.price;
   });
   }
 
