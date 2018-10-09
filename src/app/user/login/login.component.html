@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="mail">Mail</label>
+          <input type="text" id="mail" class="form-control" formControlName="mail">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="text" id="password" class="form-control" formControlName="password">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+      </form>
+      <p class="text-danger">{{ errorMessage }}</p>
+    </div>
+  </div>
