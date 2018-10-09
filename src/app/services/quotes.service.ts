@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Quote } from '../models/Quote.model';
 import * as firebase from 'firebase';
+import { AuthGuardService } from './auth-guard.service';
 
 @Injectable()
 export class QuotesService {
 
-  constructor() { }
+  constructor(private authGuardService:AuthGuardService) { }
 
   getQuotes() {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('quote').once('value').then (
+        firebase.database().ref('quote/' + this.getUserUid()).once('value').then (
           (data) => {
             resolve(data.val());
           }, (error) => {
@@ -22,9 +23,12 @@ export class QuotesService {
   }
 
   getAQuote(id:string) {
+
+    console.log(id);
+    console.log(this.getUserUid());
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('quote/'+id).once('value').then (
+        firebase.database().ref('quote/' + this.getUserUid() + "/" + id).once('value').then (
           (data) => {
             resolve(data.val());
           }, (error) => {
@@ -36,9 +40,10 @@ export class QuotesService {
   }
 
   createNewQuote(newQuote:Quote) {
+    console.log("UserID:" +this.getUserUid());
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('quote').push(newQuote).then (
+        firebase.database().ref('quote/' + this.getUserUid()).push(newQuote).then (
           (data) => {
             resolve(data.key);
           }, (error) => {
@@ -47,6 +52,10 @@ export class QuotesService {
         );
       }
     );
+  }
+
+  getUserUid() {
+    return this.authGuardService.getUid();
   }
 
   calculateQuote(distance:number, surface:number, atticCellar:number, piano:boolean) {
