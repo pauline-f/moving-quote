@@ -1,8 +1,29 @@
-<div *ngFor="let quote of quotes">
-  <h3>
-    {{ quote.name }}
-  </h3>
-  <h4>
-    {{ quote.mail }}
-  </h4>
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Your quotes</h2>
+    <div class="list-group">
+      <button class="list-group-item" *ngFor="let quote of quotes" let i=index (click)="onViewQuote(i)">
+          <h3 class="list-group-item-heading">
+            {{ i }}
+          </h3>
+          <h2 class="list-group-item-heading">
+            {{ quote.date }}
+          </h2>
+          <h2 class="list-group-item-heading">
+            {{ quote.addressFrom }}
+          </h2>
+          <h2 class="list-group-item-heading">
+            {{ quote.addressTo }}
+          </h2>
+          <h2 class="list-group-item-heading">
+            {{ price }}
+          </h2>
+      </button>
+
+    </div> 
+  </div>
 </div>
+
+
+
+

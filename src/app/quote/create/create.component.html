@@ -2,47 +2,68 @@
   <div class="col-sm-8 col-sm-offset-2">
     <h2>Create a quote</h2>
     <form [formGroup]="createForm" (ngSubmit)="onSaveData()">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" class="form-control" formControlName="name">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2">Name</label>
+        <div class="col-sm-10">
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="mail">Mail</label>
-        <input type="text" id="mail" class="form-control" formControlName="mail">
+      <div class="form-group row">
+        <label for="mail" class="col-sm-2">Mail</label>
+        <div class="col-sm-10">
+          <input type="text" id="mail" class="form-control" formControlName="mail">
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="addressFrom">Address from</label>
-        <input type="text" id="addressFrom" class="form-control" formControlName="addressFrom">
+      <div class="form-group row">
+        <label for="addressFrom" class="col-sm-2">From</label>
+        <div class="col-sm-10">
+          <input type="text" id="addressFrom" class="form-control" formControlName="addressFrom">
+        </div>
       </div>
 
-      <div class="form-group">
-          <label for="addressTo">Address to</label>
+      <div class="form-group row">
+        <label for="addressTo" class="col-sm-2">To</label>
+        <div class="col-sm-10">
           <input type="text" id="addressTo" class="form-control" formControlName="addressTo">
         </div>
-
-      <div class="form-group">
-        <label for="distance">Distance</label>
-        <input type="text" id="distance" class="form-control" formControlName="distance">
       </div>
 
-      <div class="form-group">
-        <label for="surface">Surface</label>
-        <input type="text" id="surface" class="form-control" formControlName="surface">
+      <div class="form-group row">
+        <input type="image" src="../../../assets/img/googleMaps.jpeg" width="10%" height="10%" onclick="">
+        <div class="col-sm-10">
+          Check distance
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="atticCellar">Attic/Cellar</label>
-        <input type="text" id="atticCellar" class="form-control" formControlName="atticCellar">
+      <div class="form-group row">
+        <label for="distance" class="col-sm-2">Distance</label>
+        <div class="col-sm-10">
+          <input type="number" id="distance" class="form-control" formControlName="distance">
+        </div>
       </div>
 
-      <div class="form-check">
+      <div class="form-group row">
+        <label for="surface" class="col-sm-2">Surface</label>
+        <div class="col-sm-10">
+          <input type="number" id="surface" class="form-control" formControlName="surface">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="atticCellar" class="col-sm-2">Attic/Cellar</label>
+        <div class="col-sm-10">
+          <input type="number" id="atticCellar" class="form-control" formControlName="atticCellar">
+        </div>
+      </div>
+
+      <div class="form-check row">
         <input type="checkbox" class="form-check-input" id="piano" formControlName="piano">
         <label for="piano">Piano</label>
       </div>
 
-      <div class="form-check">
+      <div class="form-check row">
         <input type="checkbox" class="form-check-input" id="packHelpful" formControlName="packHelpful">
         <label for="packHelpful">Pack helpful</label>
       </div>

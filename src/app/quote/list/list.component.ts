@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuotesService } from '../../services/quotes.service';
 import { Quote } from '../../models/Quote.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import { Quote } from '../../models/Quote.model';
 export class ListComponent implements OnInit {
   quotes: Quote[] = [];
 
-  constructor(private quotesService: QuotesService) { }
+  constructor(private quotesService: QuotesService, private router:Router) { }
 
   ngOnInit() {
     
@@ -23,6 +24,10 @@ export class ListComponent implements OnInit {
         });
       }  
     });
+  }
+
+  onViewQuote(id:number) {
+    this.router.navigate(['/quote', 'view', id]);
   }
 
 }
