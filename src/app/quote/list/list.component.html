@@ -1,23 +1,39 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h2>Your quotes</h2>
     <div class="list-group">
-      <button class="list-group-item" *ngFor="let quote of quotes" let i=index (click)="onViewQuote(i)">
-          <h3 class="list-group-item-heading">
-            {{ i }}
-          </h3>
-          <h2 class="list-group-item-heading">
-            {{ quote.date }}
-          </h2>
-          <h2 class="list-group-item-heading">
-            {{ quote.addressFrom }}
-          </h2>
-          <h2 class="list-group-item-heading">
-            {{ quote.addressTo }}
-          </h2>
-          <h2 class="list-group-item-heading">
-            {{ price }}
-          </h2>
+      <button class="list-group-item" *ngFor="let quote of quotes; let i=index" (click)="onViewQuote(i)">
+          
+        <div class="row">
+          <div class="col-sm-6">
+            <h5 class="list-group-item-heading">
+              Num offer: {{ quote.numOffre }}
+            </h5>
+          </div> 
+          <div class="row col-sm-6">
+            <p class="list-group-item-heading">
+              Date: {{ quote.date }}
+            </p>
+          </div> 
+        </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="list-group-item-heading">
+                From: {{ quote.addressFrom }}
+              <p>
+            </div>
+            <div class="row col-sm-6">
+              <p class="list-group-item-heading">
+                To: {{ quote.addressTo }}
+              </p>
+            </div>
+          </div>
+          <div class="row col-sm-6">
+            <p class="list-group-item-heading">
+              Price: {{ quote.totalPrice }}
+            </p>
+          </div>
       </button>
 
     </div> 

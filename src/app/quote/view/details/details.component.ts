@@ -31,9 +31,9 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.offerNum = this.id;
     this.quotesService.getAQuote(this.id).then(res => {
       this.date = res.dateQuote;
+      this.offerNum = res.numOffre;
       this.name = res.name;
       this.mail = res.mail;
       this.addressFrom = res.addressFrom;
@@ -44,10 +44,10 @@ export class DetailsComponent implements OnInit {
       this.piano = res.piano;
       this.packHelpful = res.packHelpful;
 
-      this.priceDistance = this.quotesService.calculatePriceDistance(this.distance);
-      this.surfaceTotal = this.quotesService.calculateTotalSurface(this.surface, this.atticCellar);
-      this.nbCar = this.quotesService.calculateNbCar(this.surfaceTotal);
-      this.price = this.quotesService.calculateQuote(this.distance, this.surface, this.atticCellar, this.piano);
+      this.priceDistance = res.priceDistance;
+      this.surfaceTotal = res.totalSurface;
+      this.nbCar = res.nbCar;
+      this.price = res.totalPrice;
     });
   }
 

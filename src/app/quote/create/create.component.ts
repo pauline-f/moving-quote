@@ -22,7 +22,11 @@ export class CreateComponent implements OnInit {
   atticCellar: number;
   piano: boolean;
   packHelpful: boolean;
+  priceDistance: number;
+  totalSurface: number;
+  nbCar: number;
   totalPrice: number;
+  numOffre: string;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -56,11 +60,26 @@ export class CreateComponent implements OnInit {
     const atticCellar = parseInt(this.createForm.get('atticCellar').value);
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
-
+    
+    this.priceDistance = this.quotesService.calculatePriceDistance(distance);
+    this.totalSurface = this.quotesService.calculateTotalSurface(surface, atticCellar);
+    this.nbCar = this.quotesService.calculateNbCar(this.totalSurface);
     this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
     this.date = new Date();
+    this.numOffre = new Date().getFullYear().toString() + new Date().getMonth().toString() + new Date().getDay().toString() + new Date().getHours().toString() + new Date().getMinutes().toString() + new Date().getSeconds().toString() + new Date().getMilliseconds().toString();
+    
+    console.log(new Date().getFullYear().toString());
+    console.log(new Date().getMonth().toString());
+    console.log(new Date().getDate().toString());
+    console.log(new Date().getHours().toString());
+    console.log(new Date().getMinutes().toString());
+    console.log(new Date().getSeconds().toString());
+    console.log(new Date().getMilliseconds().toString());
+
+
     console.log(this.date);
-    const newQuote = new Quote(this.date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, piano, packHelpful)
+    const newQuote = new Quote(this.date, this.numOffre, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
+                        piano, packHelpful,this.priceDistance, this.totalSurface, this.nbCar, this.totalPrice);
     this.quotesService.createNewQuote(newQuote)
     .then(res => {
       console.log(res);
@@ -73,6 +92,5 @@ export class CreateComponent implements OnInit {
     
   }
 
-  
 
 }

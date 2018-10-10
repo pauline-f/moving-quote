@@ -19,7 +19,8 @@ export class ViewComponent implements OnInit {
   atticCellar: number;
   piano: boolean;
   packHelpful: boolean;
-  price: number;
+  totalPrice: number;
+
   id: string;
 
   constructor(private route: ActivatedRoute, 
@@ -27,8 +28,6 @@ export class ViewComponent implements OnInit {
               public router: Router) { }
 
   ngOnInit() {
-    
-
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
       console.log(res.dateQuote);
@@ -42,7 +41,7 @@ export class ViewComponent implements OnInit {
       this.atticCellar = res.atticCellar;
       this.piano = res.piano;
       this.packHelpful = res.packHelpful;
-      this.price = this.quotesService.calculateQuote(this.distance, this.surface, this.atticCellar, this.piano);
+      this.totalPrice = res.totalPrice;
   });
   }
 
