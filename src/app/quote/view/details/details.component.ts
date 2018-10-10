@@ -34,9 +34,9 @@ export class DetailsComponent implements OnInit {
       this.name = res.name;
       this.mail = res.mail;
       this.address = res.address;
-      this.distance = parseInt(res.distance);
-      this.surface = parseInt(res.surface);
-      this.atticCellar = parseInt(res.atticCellar);
+      this.distance = res.distance;
+      this.surface = res.surface;
+      this.atticCellar = res.atticCellar;
       this.piano = res.piano;
       this.packHelpful = res.packHelpful;
 

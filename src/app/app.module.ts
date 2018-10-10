@@ -20,6 +20,7 @@ const appRoutes: Routes = [
   { path:'user/register', component:RegisterComponent },
   { path:'user/login', component:LoginComponent },
   { path:'quote/create', canActivate:[AuthGuardService], component:CreateComponent },
+  { path:'quote/list', canActivate:[AuthGuardService], component:ListComponent },
   { path:'quote/view/:id', canActivate:[AuthGuardService], component:ViewComponent },
   { path:'quote/view/details/:id', canActivate:[AuthGuardService], component:DetailsComponent },
   { path:'', redirectTo:'quote/create', pathMatch:'full' },

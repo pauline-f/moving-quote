@@ -1,3 +1,8 @@
-<p>
-  list works!
-</p>
+<div *ngFor="let quote of quotes">
+  <h3>
+    {{ quote.name }}
+  </h3>
+  <h4>
+    {{ quote.mail }}
+  </h4>
+</div>

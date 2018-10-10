@@ -23,16 +23,26 @@ export class QuotesService {
   }
 
   getAQuote(id:string) {
-
-    console.log(id);
-    console.log(this.getUserUid());
-    return new Promise(
+    return new Promise<Quote>(
       (resolve, reject) => {
         firebase.database().ref('quote/' + this.getUserUid() + "/" + id).once('value').then (
           (data) => {
             resolve(data.val());
           }, (error) => {
             reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  getAllQuote() {
+    return new Promise<Quote[]>(
+      (resolve, reject) => {
+        firebase.database().ref('quote/' + this.getUserUid()).on('value', (data) => {
+            resolve(data.val());
+          }, () => {
+            resolve([]);
           }
         );
       }
