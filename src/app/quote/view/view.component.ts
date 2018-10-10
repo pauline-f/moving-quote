@@ -9,15 +9,17 @@ import { QuotesService } from '../../services/quotes.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
+  date: Date;
   name: string;
   mail: string;
-  address: string;
+  addressFrom: string;
+  addressTo: string;
   distance: number;
   surface: number;
   atticCellar: number;
   piano: boolean;
   packHelpful: boolean;
-  price: string;
+  price: number;
   id: string;
 
   constructor(private route: ActivatedRoute, 
@@ -29,15 +31,18 @@ export class ViewComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
-      console.log(res.name);
+      console.log(res.dateQuote);
+      this.date = res.dateQuote;
       this.name = res.name;
       this.mail = res.mail;
-      this.address = res.address;
+      this.addressFrom = res.addressFrom;
+      this.addressTo = res.addressTo;
       this.distance = res.distance;
       this.surface = res.surface;
       this.atticCellar = res.atticCellar;
       this.piano = res.piano;
       this.packHelpful = res.packHelpful;
+      this.price = this.quotesService.calculateQuote(this.distance, this.surface, this.atticCellar, this.piano);
   });
   }
 

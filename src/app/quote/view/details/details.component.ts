@@ -8,9 +8,11 @@ import { QuotesService } from '../../../services/quotes.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  date: Date;
   name: string;
   mail: string;
-  address: string;
+  addressFrom: string;
+  addressTo: string;
   distance: number;
   surface: number;
   atticCellar: number;
@@ -31,9 +33,11 @@ export class DetailsComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.offerNum = this.id;
     this.quotesService.getAQuote(this.id).then(res => {
+      this.date = res.dateQuote;
       this.name = res.name;
       this.mail = res.mail;
-      this.address = res.address;
+      this.addressFrom = res.addressFrom;
+      this.addressTo = res.addressTo;
       this.distance = res.distance;
       this.surface = res.surface;
       this.atticCellar = res.atticCellar;

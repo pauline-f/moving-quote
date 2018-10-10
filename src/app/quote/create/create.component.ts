@@ -12,9 +12,11 @@ import { Quote } from '../../models/Quote.model';
 export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
+  date: Date;
   name: string;
   mail: string;
-  address: string;
+  addressFrom: string;
+  addressTo: string;
   distance: number;
   surface: number;
   atticCellar: number;
@@ -34,7 +36,8 @@ export class CreateComponent implements OnInit {
     this.createForm = this.formBuilder.group( {
       name: ['', Validators.required],
       mail: ['', Validators.required],
-      address: ['', Validators.required],
+      addressFrom: ['', Validators.required],
+      addressTo: ['', Validators.required],
       distance: ['', Validators.required],
       surface: ['', Validators.required],
       atticCellar: ['', Validators.required],
@@ -46,7 +49,8 @@ export class CreateComponent implements OnInit {
   onSaveData() {
     const name = this.createForm.get('name').value;
     const mail = this.createForm.get('mail').value;
-    const address = this.createForm.get('address').value;
+    const addressFrom = this.createForm.get('addressFrom').value;
+    const addressTo = this.createForm.get('addressTo').value;
     const distance = parseInt(this.createForm.get('distance').value);
     const surface = parseInt(this.createForm.get('surface').value);
     const atticCellar = parseInt(this.createForm.get('atticCellar').value);
@@ -54,8 +58,9 @@ export class CreateComponent implements OnInit {
     const packHelpful = this.createForm.get('packHelpful').value;
 
     this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
-
-    const newQuote = new Quote(name, mail, address, distance, surface, atticCellar, piano, packHelpful, this.totalPrice)
+    this.date = new Date();
+    console.log(this.date);
+    const newQuote = new Quote(this.date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, piano, packHelpful)
     this.quotesService.createNewQuote(newQuote)
     .then(res => {
       console.log(res);
