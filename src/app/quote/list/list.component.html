@@ -2,13 +2,14 @@
   <div class="col-sm-12">
     <h2>Your quotes</h2>
     <div class="list-group">
-      <button class="list-group-item" *ngFor="let quote of quotes; let i=index" (click)="onViewQuote(i)">
-          
+      <p class="text-warning">{{ messageNoQuote }}</p>
+      <div class="list-group-item" *ngFor="let quote of quotes; let i=index">
+         
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="list-group-item-heading">
+            <p class="list-group-item-heading" (click)="onViewQuote(i)" style="cursor:pointer">
               Num offer: {{ ids[i] }}
-            </h5>
+            </p>
           </div> 
           <div class="row col-sm-6">
             <p class="list-group-item-heading">
@@ -17,25 +18,32 @@
           </div> 
         </div>
 
-          <div class="row">
-            <div class="col-sm-6">
-              <p class="list-group-item-heading">
-                From: {{ quote.addressFrom }}
-              <p>
-            </div>
-            <div class="row col-sm-6">
-              <p class="list-group-item-heading">
-                To: {{ quote.addressTo }}
-              </p>
-            </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="list-group-item-heading">
+              From: {{ quote.addressFrom }}
+            <p>
           </div>
           <div class="row col-sm-6">
+            <p class="list-group-item-heading">
+              To: {{ quote.addressTo }}
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
             <p class="list-group-item-heading">
               Price: {{ quote.totalPrice }}
             </p>
           </div>
-      </button>
-
+          <div class="row col-sm-6">
+            <button class="btn btn-default" (click)="onDeletequote(ids[i])">
+              <img src="../../../assets/img/glyphicons-bin.png">
+            </button>
+          </div>
+        </div>
+          
     </div> 
   </div>
 </div>

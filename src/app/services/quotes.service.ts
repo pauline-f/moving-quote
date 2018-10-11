@@ -64,6 +64,23 @@ export class QuotesService {
     );
   }
 
+  removeQuote(id: number) {
+    console.log("coucou");
+    console.log('quote/' + this.getUserUid() + '/' + id + '/');
+    firebase.database().ref('quote/' + this.getUserUid() + '/' + id + '/').remove();
+    //return new Promise(
+    //  (resolve, reject) => {
+    //    firebase.database().ref('quote/' + this.getUserUid() + "/" + id).remove().then (
+    //      (data) => {
+    //        resolve(data.key);
+    //      }, (error) => {
+    //        reject(error);
+    //      }
+    //    );
+    //  }
+    //);
+  }
+
   getUserUid() {
     return this.authGuardService.getUid();
   }

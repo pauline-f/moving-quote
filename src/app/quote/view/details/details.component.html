@@ -3,103 +3,89 @@
     <div class="col-sm-12">
       <h1>Quote details</h1>
     
-      
-        
-        
           <div class="form-group row">
-            <label class="col-sm-4">Num offer:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Num offer:</label>
+            <div class="col-sm-3">
                 <label>{{ numOffer }}</label>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4">Date offer:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Date offer:</label>
+            <div class="col-sm-3">
                 <label>{{ date | date:'medium' }}</label>
             </div>
           </div>
           <hr>
           <div class="form-group row">
-            <label class="col-sm-4">Name:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Name:</label>
+            <div class="col-sm-3">
                 <label>{{ name }}</label>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4">Mail:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Mail:</label>
+            <div class="col-sm-3">
                 <label>{{ mail }}</label>
             </div>
           </div>
+          
           <div class="form-group row">
-            <label class="col-sm-4">From:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">From:</label>
+            <div class="col-sm-3">
                 <label>{{ addressFrom }}</label>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4">To:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">To:</label>
+            <div class="col-sm-3">
                 <label>{{ addressTo }}</label>
             </div>
           </div>
+          
           <hr>
           <div class="form-group row">
-            <label class="col-sm-4">Distance:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Distance:</label>
+            <div class="col-sm-3">
                 <label>{{ distance }} km</label>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4">Estimated price:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Estimated price:</label>
+            <div class="col-sm-3">
                 <label>{{ priceDistance }} kr for a car</label>
             </div>
           </div>
           <hr>
           <div class="form-group row">
-            <label class="col-sm-4">Surface:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Surface:</label>
+            <div class="col-sm-3">
                 <label>{{ surface }} m2</label>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4">Attic/Cellar:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Attic/Cellar:</label>
+            <div class="col-sm-3">
                 <label>{{ atticCellar }} m2</label>
             </div>
           </div>
+          
           <div class="form-group row">
-            <label class="col-sm-4">Estimated surface total (attic and cellar count twice):</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Estimated surface total (attic and cellar count twice):</label>
+            <div class="col-sm-3">
                 <label>{{ surfaceTotal }} m2</label>
             </div>
-          </div>
-          <hr>
-          <div class="form-group row">
-            <label class="col-sm-4">Estimated cars:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 bold">Estimated cars:</label>
+            <div class="col-sm-3">
                 <label>{{ nbCar }} car(s)</label>
             </div>
           </div>
           <hr>
+          
           <div class="form-group row">
-            <label class="col-sm-4">Other:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 bold">Other:</label>
+            <div class="col-sm-4">
                 <input type="checkbox" id="piano" [checked]=piano [disabled]=true> Piano
             </div>
+            <div class="col-sm-4">
+                <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
+              </div>
           </div>
       
-          <div class="form-group row">
-            <label class="col-sm-4"></label>
-            <div class="col-sm-8">
-              <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
-            </div>
-          </div>
+          
           <hr>
           <hr>
           <div class="form-group row">
-            <label class="col-sm-4">Total price:</label>
+            <label class="col-sm-4 bold">Total price:</label>
             <div class="col-sm-8">
                 <h5>{{ price }} kr</h5>
             </div>
