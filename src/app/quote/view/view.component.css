@@ -1,3 +1,8 @@
-p {
+.col-sm-3 {
     font-weight: bold;
+}
+
+#float {
+    display: flex;
+    flex-wrap: wrap;
 }

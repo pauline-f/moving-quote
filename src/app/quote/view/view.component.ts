@@ -20,6 +20,7 @@ export class ViewComponent implements OnInit {
   piano: boolean;
   packHelpful: boolean;
   totalPrice: number;
+  numOffer: string;
 
   id: string;
 
@@ -30,7 +31,7 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
-      console.log(res.dateQuote);
+      this.numOffer = this.id;
       this.date = res.dateQuote;
       this.name = res.name;
       this.mail = res.mail;
