@@ -1,41 +1,110 @@
-<div>
-  <h2>Quote details</h2>
+<div class="row">
 
-  <div>
-    <p>Offer number: {{ offerNum }}</p>
-    <p>Offer date: {{ date }}</p>
-  </div>
-
-  <div>
-    <p>Name: {{ name }}</p>
-    <p>Mail: {{ mail }}</p>
-    <p>From: {{ addressFrom }}</p>
-    <p>To: {{ addressTo }}</p>
-  </div>
-
-  <div>
-    <p>Distance: {{ distance }} km</p>
-    <p>Estimated price: {{ priceDistance }} kr</p>
-  </div>
-
-  <div>
-    <p>Surface: {{ surface }}</p>
-    <p>Attic / Cellar: {{ atticCellar }}</p>
-    <p>Estimated surface total: {{ surfaceTotal }}</p>
-    <p>(Attic and cellar count twice)</p>
-  </div>
-
-  <div>
-    <p>Estimated cars: {{ nbCar }}</p>
-  </div>
-
-  <div>
-      <input type="checkbox" id="piano" [checked]=piano [disabled]=true> Piano
-      <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
-  </div>
-
-  <div>
-    <h4>Total price: {{ price }}</h4>
-  </div>
+    <div class="col-sm-12">
+      <h1>Quote details</h1>
+    
+      
+        
+        
+          <div class="form-group row">
+            <label class="col-sm-4">Num offer:</label>
+            <div class="col-sm-8">
+                <label>{{ numOffer }}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">Date offer:</label>
+            <div class="col-sm-8">
+                <label>{{ date | date:'medium' }}</label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Name:</label>
+            <div class="col-sm-8">
+                <label>{{ name }}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">Mail:</label>
+            <div class="col-sm-8">
+                <label>{{ mail }}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">From:</label>
+            <div class="col-sm-8">
+                <label>{{ addressFrom }}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">To:</label>
+            <div class="col-sm-8">
+                <label>{{ addressTo }}</label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Distance:</label>
+            <div class="col-sm-8">
+                <label>{{ distance }} km</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">Estimated price:</label>
+            <div class="col-sm-8">
+                <label>{{ priceDistance }} kr for a car</label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Surface:</label>
+            <div class="col-sm-8">
+                <label>{{ surface }} m2</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">Attic/Cellar:</label>
+            <div class="col-sm-8">
+                <label>{{ atticCellar }} m2</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4">Estimated surface total (attic and cellar count twice):</label>
+            <div class="col-sm-8">
+                <label>{{ surfaceTotal }} m2</label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Estimated cars:</label>
+            <div class="col-sm-8">
+                <label>{{ nbCar }} car(s)</label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Other:</label>
+            <div class="col-sm-8">
+                <input type="checkbox" id="piano" [checked]=piano [disabled]=true> Piano
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label class="col-sm-4"></label>
+            <div class="col-sm-8">
+              <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
+            </div>
+          </div>
+          <hr>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-4">Total price:</label>
+            <div class="col-sm-8">
+                <h5>{{ price }} kr</h5>
+            </div>
+          </div>
+        </div>
+      
   
 </div>

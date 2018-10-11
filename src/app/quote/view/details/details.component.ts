@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit {
   priceDistance: number;
   surfaceTotal: number;
   nbCar: number;
+  numOffer: string;
   
   constructor(private route: ActivatedRoute, 
               private quotesService: QuotesService) { }
@@ -31,7 +32,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
-      this.date = new Date(res.dateQuote);
+      this.numOffer = this.id;
+      this.date = res.dateQuote;
       this.name = res.name;
       this.mail = res.mail;
       this.addressFrom = res.addressFrom;
