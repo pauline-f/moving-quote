@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuotesService } from '../../../services/quotes.service';
+import { Quote } from '../../../models/Quote.model';
 
 @Component({
   selector: 'app-details',
@@ -23,17 +24,14 @@ export class DetailsComponent implements OnInit {
   priceDistance: number;
   surfaceTotal: number;
   nbCar: number;
-  offerNum: string;
   
-
   constructor(private route: ActivatedRoute, 
               private quotesService: QuotesService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quotesService.getAQuote(this.id).then(res => {
-      this.date = res.dateQuote;
-      this.offerNum = res.numOffre;
+      this.date = new Date(res.dateQuote);
       this.name = res.name;
       this.mail = res.mail;
       this.addressFrom = res.addressFrom;

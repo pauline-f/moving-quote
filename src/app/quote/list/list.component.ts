@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     
     this.quotesService.getAllQuote().then(all => {
-      console.log(all);
+      //console.log(all);
       for (let quote in all) {
         //console.log(quote);
         this.quotesService.getAQuote(quote).then(q => {

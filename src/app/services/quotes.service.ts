@@ -39,7 +39,7 @@ export class QuotesService {
   getAllQuote() {
     return new Promise<Quote[]>(
       (resolve, reject) => {
-        firebase.database().ref('quote/' + this.getUserUid()).on('value', (data) => {
+        firebase.database().ref('quote/' + this.getUserUid()).once('value', (data) => {
             resolve(data.val());
           }, () => {
             resolve([]);

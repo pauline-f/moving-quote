@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QuotesService } from '../../services/quotes.service';
 import { Quote } from '../../models/Quote.model';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-create',
@@ -12,7 +13,7 @@ import { Quote } from '../../models/Quote.model';
 export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
-  date: Date;
+  date: any;
   name: string;
   mail: string;
   addressFrom: string;
@@ -26,7 +27,6 @@ export class CreateComponent implements OnInit {
   totalSurface: number;
   nbCar: number;
   totalPrice: number;
-  numOffre: string;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -65,20 +65,11 @@ export class CreateComponent implements OnInit {
     this.totalSurface = this.quotesService.calculateTotalSurface(surface, atticCellar);
     this.nbCar = this.quotesService.calculateNbCar(this.totalSurface);
     this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
-    this.date = new Date();
-    this.numOffre = new Date().getFullYear().toString() + new Date().getMonth().toString() + new Date().getDay().toString() + new Date().getHours().toString() + new Date().getMinutes().toString() + new Date().getSeconds().toString() + new Date().getMilliseconds().toString();
-    
-    console.log(new Date().getFullYear().toString());
-    console.log(new Date().getMonth().toString());
-    console.log(new Date().getDate().toString());
-    console.log(new Date().getHours().toString());
-    console.log(new Date().getMinutes().toString());
-    console.log(new Date().getSeconds().toString());
-    console.log(new Date().getMilliseconds().toString());
+    this.date = firebase.database.ServerValue.TIMESTAMP;
 
 
     console.log(this.date);
-    const newQuote = new Quote(this.date, this.numOffre, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
+    const newQuote = new Quote(this.date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
                         piano, packHelpful,this.priceDistance, this.totalSurface, this.nbCar, this.totalPrice);
     this.quotesService.createNewQuote(newQuote)
     .then(res => {

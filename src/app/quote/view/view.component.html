@@ -2,15 +2,16 @@
 
   <h1>Price suggestion for housing move</h1>
 
-<div>
-  <p>{{ date }}</p>
-  <p>{{ name }}</p>
-  <p>{{ mail }}</p>
-  <p>{{ addressFrom }}</p>
-  <p>{{ addressTo }}</p>
+<div class="container">
+  <p>Num offer: {{ date }}</p>
+  <p>Date: {{ date }}</p>
+  <p>Name: {{ name }}</p>
+  <p>Mail: {{ mail }}</p>
+  <p>From: {{ addressFrom }}</p>
+  <p>To: {{ addressTo }}</p>
 </div>
 
-<div>
+<div class="container">
   <p>Distance: {{ distance }}</p>
   <p>Surface: {{ surface }}</p>
   <p>Attic/Cellar: {{ atticCellar }}</p>
@@ -18,7 +19,7 @@
   <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
 </div>
 
-<div>
+<div> class="container"
   <h3>Estimated price: {{ totalPrice }} incl.VAT</h3>
   <p>We save your price proposal 90 days</p>
   <button class="btn btn-primary" (click)="viewDetails()" type="button">See details</button>
