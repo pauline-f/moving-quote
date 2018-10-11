@@ -8,20 +8,6 @@ export class QuotesService {
 
   constructor(private authGuardService:AuthGuardService) { }
 
-  getQuotes() {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('quote/' + this.getUserUid()).once('value').then (
-          (data) => {
-            resolve(data.val());
-          }, (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
-  }
-
   getAQuote(id:string) {
     return new Promise<Quote>(
       (resolve, reject) => {
@@ -65,20 +51,7 @@ export class QuotesService {
   }
 
   removeQuote(id: number) {
-    console.log("coucou");
-    console.log('quote/' + this.getUserUid() + '/' + id + '/');
     firebase.database().ref('quote/' + this.getUserUid() + '/' + id + '/').remove();
-    //return new Promise(
-    //  (resolve, reject) => {
-    //    firebase.database().ref('quote/' + this.getUserUid() + "/" + id).remove().then (
-    //      (data) => {
-    //        resolve(data.key);
-    //      }, (error) => {
-    //        reject(error);
-    //      }
-    //    );
-    //  }
-    //);
   }
 
   getUserUid() {

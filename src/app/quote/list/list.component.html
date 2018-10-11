@@ -2,7 +2,6 @@
   <div class="col-sm-12">
     <h2>Your quotes</h2>
     <div class="list-group">
-      <p class="text-warning">{{ messageNoQuote }}</p>
       <div class="list-group-item" *ngFor="let quote of quotes; let i=index">
          
         <div class="row">
@@ -38,7 +37,7 @@
             </p>
           </div>
           <div class="row col-sm-6">
-            <button class="btn btn-default" (click)="onDeletequote(ids[i])">
+            <button class="btn btn-default" (click)="onDeleteQuote(i)">
               <img src="../../../assets/img/glyphicons-bin.png">
             </button>
           </div>

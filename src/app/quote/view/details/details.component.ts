@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuotesService } from '../../../services/quotes.service';
-import { Quote } from '../../../models/Quote.model';
 
 @Component({
   selector: 'app-details',
@@ -50,6 +49,4 @@ export class DetailsComponent implements OnInit {
       this.price = res.totalPrice;
     });
   }
-
-
 }

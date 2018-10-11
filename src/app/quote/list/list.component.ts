@@ -11,47 +11,26 @@ import { Router } from '@angular/router';
 export class ListComponent implements OnInit {
   quotes: Quote[] = [];
   ids: string[] = [];
-  messageNoQuote: string = "";
 
   constructor(private quotesService: QuotesService, private router:Router) { }
 
   ngOnInit() {
-    this.messageNoQuote = "You have no quote."
     this.quotesService.getAllQuote().then(all => {
-      //console.log(all);
-      for (let quote in all) {
-        //console.log(quote);
-        this.quotesService.getAQuote(quote).then(q => {
-          this.ids.push(quote);
-          this.quotes.push(q);
-          this.messageNoQuote = "";
-        });
+      for (let id in all) { // Browse all keys
+        this.ids.push(id); // Store ids
+        this.quotes.push(all[id]); // Get quote by id
       }
     });
   }
 
-  onViewQuote(id:number) {
-    console.log(this.ids[id]);
-    var i = this.ids[id];
-    this.router.navigate(['/quote', 'view', i]);
+  onViewQuote(index:number) {
+    this.router.navigate(['/quote', 'view', this.ids[index]]);
   }
 
-  onDeletequote(id:number) {
-    console.log(id);
-    this.quotesService.removeQuote(id);
-
-    this.quotesService.getAllQuote().then(all => {
-      this.quotes = [];
-      this.ids = [];
-      for (let quote in all) {
-        //console.log(quote);
-        this.quotesService.getAQuote(quote).then(q => {
-          this.ids.push(quote);
-          this.quotes.push(q);
-          this.messageNoQuote = "";
-        });
-      }
-    });
+  onDeleteQuote(index:number) {
+    this.quotesService.removeQuote(index);
+    this.quotes.splice(index,1);
+    this.ids.splice(index, 1);
   }
 
 }

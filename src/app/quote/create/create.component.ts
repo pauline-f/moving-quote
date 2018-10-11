@@ -60,15 +60,13 @@ export class CreateComponent implements OnInit {
     const atticCellar = parseInt(this.createForm.get('atticCellar').value);
     const piano = this.createForm.get('piano').value;
     const packHelpful = this.createForm.get('packHelpful').value;
-    
+
     this.priceDistance = this.quotesService.calculatePriceDistance(distance);
     this.totalSurface = this.quotesService.calculateTotalSurface(surface, atticCellar);
     this.nbCar = this.quotesService.calculateNbCar(this.totalSurface);
     this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
     this.date = firebase.database.ServerValue.TIMESTAMP;
 
-
-    console.log(this.date);
     const newQuote = new Quote(this.date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
                         piano, packHelpful,this.priceDistance, this.totalSurface, this.nbCar, this.totalPrice);
     this.quotesService.createNewQuote(newQuote)
