@@ -36,7 +36,6 @@ export class QuotesService {
   }
 
   createNewQuote(newQuote:Quote) {
-    console.log("UserID:" +this.getUserUid());
     return new Promise(
       (resolve, reject) => {
         firebase.database().ref('quote/' + this.getUserUid()).push(newQuote).then (

@@ -46,7 +46,6 @@ export class ViewComponent implements OnInit {
 
   viewDetails() {
     this.quotesService.getAQuote(this.id).then(res => {
-      console.log(res);
       this.router.navigate(['/quote', 'view', 'details', this.id]);
     });
   }

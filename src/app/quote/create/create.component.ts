@@ -56,7 +56,6 @@ export class CreateComponent implements OnInit {
                         piano, priceDistance, totalSurface, nbCar, totalPrice);
     this.quotesService.createNewQuote(newQuote)
     .then(res => {
-      console.log(res);
       this.router.navigate(['/quote', 'view', res]);
   })
     .catch(err => {

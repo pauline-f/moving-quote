@@ -28,7 +28,6 @@ export class ListComponent implements OnInit {
   }
 
   onDeleteQuote(index:number) {
-
     this.quotesService.removeQuote(this.ids[index]);
     this.quotes.splice(index,1);
     this.ids.splice(index, 1);
