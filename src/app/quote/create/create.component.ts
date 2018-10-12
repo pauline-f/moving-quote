@@ -13,20 +13,7 @@ import * as firebase from 'firebase';
 export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
-  date: any;
-  name: string;
-  mail: string;
-  addressFrom: string;
-  addressTo: string;
-  distance: number;
-  surface: number;
-  atticCellar: number;
-  piano: boolean;
-  packHelpful: boolean;
-  priceDistance: number;
-  totalSurface: number;
-  nbCar: number;
-  totalPrice: number;
+  
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -42,11 +29,10 @@ export class CreateComponent implements OnInit {
       mail: ['', Validators.required],
       addressFrom: ['', Validators.required],
       addressTo: ['', Validators.required],
-      distance: ['', Validators.required],
-      surface: ['', Validators.required],
-      atticCellar: ['', Validators.required],
+      distance: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
+      surface: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
+      atticCellar: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       piano: [false, Validators.required],
-      packHelpful: [false, Validators.required],
     });
   }
 
@@ -59,16 +45,15 @@ export class CreateComponent implements OnInit {
     const surface = parseInt(this.createForm.get('surface').value);
     const atticCellar = parseInt(this.createForm.get('atticCellar').value);
     const piano = this.createForm.get('piano').value;
-    const packHelpful = this.createForm.get('packHelpful').value;
 
-    this.priceDistance = this.quotesService.calculatePriceDistance(distance);
-    this.totalSurface = this.quotesService.calculateTotalSurface(surface, atticCellar);
-    this.nbCar = this.quotesService.calculateNbCar(this.totalSurface);
-    this.totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
-    this.date = firebase.database.ServerValue.TIMESTAMP;
+    const priceDistance = this.quotesService.calculatePriceDistance(distance);
+    const totalSurface = this.quotesService.calculateTotalSurface(surface, atticCellar);
+    const nbCar = this.quotesService.calculateNbCar(totalSurface);
+    const totalPrice = this.quotesService.calculateQuote(distance, surface, atticCellar, piano);
+    const date = firebase.database.ServerValue.TIMESTAMP;
 
-    const newQuote = new Quote(this.date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
-                        piano, packHelpful,this.priceDistance, this.totalSurface, this.nbCar, this.totalPrice);
+    const newQuote = new Quote(date, name, mail, addressFrom, addressTo, distance, surface, atticCellar, 
+                        piano, priceDistance, totalSurface, nbCar, totalPrice);
     this.quotesService.createNewQuote(newQuote)
     .then(res => {
       console.log(res);

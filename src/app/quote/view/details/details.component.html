@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <h2>Quote details</h2>
     
-          <div class="form-group row">
+          <div id="div" class="form-group row">
             <label class="col-sm-3 bold">Num offer:</label>
             <div class="col-sm-3">
                 <label>{{ numOffer }}</label>
@@ -76,18 +76,14 @@
             <div class="col-sm-4">
                 <input type="checkbox" id="piano" [checked]=piano [disabled]=true> Piano
             </div>
-            <div class="col-sm-4">
-                <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
-              </div>
           </div>
       
           
           <hr>
-          <hr>
           <div class="form-group row">
-            <label class="col-sm-4 bold">Total price:</label>
+            <h4 class="col-sm-4 bold">Total price:</h4>
             <div class="col-sm-8">
-                <h5>{{ price }} kr</h5>
+                <h4>{{ price }} kr</h4>
             </div>
           </div>
         </div>

@@ -2,11 +2,11 @@
   <div class="col-sm-12">
     <h2>Quotes list</h2>
     <div class="list-group">
-      <div class="list-group-item" *ngFor="let quote of quotes; let i=index">
+      <div class="list-group-item" *ngFor="let quote of quotes; let i=index" (click)="onViewQuote(i)" style="cursor:pointer">
          
         <div class="row">
           <div class="col-sm-6">
-            <p class="list-group-item-heading" (click)="onViewQuote(i)" style="cursor:pointer">
+            <p class="list-group-item-heading">
               Num offer: {{ ids[i] }}
             </p>
           </div> 
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-sm-6">
             <p class="list-group-item-heading">
-              Price: {{ quote.totalPrice }}
+              Price: {{ quote.totalPrice }} kr
             </p>
           </div>
           <div class="row col-sm-6">

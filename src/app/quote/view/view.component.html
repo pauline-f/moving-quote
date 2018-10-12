@@ -76,12 +76,7 @@
           </div>
         </div>
     
-        <div class="form-group row">
-          <label class="col-sm-3"></label>
-          <div class="col-sm-5">
-            <input type="checkbox" id="packHelpful" [checked]=packHelpful [disabled]=true> Pack Helpful
-          </div>
-        </div>
+        
 
       </div>
 
@@ -90,7 +85,7 @@
           <label>Estimated price: {{ totalPrice }} kr incl.VAT</label>
           <label>We save your price proposal 90 days</label>
           <div>
-            <button class="btn btn-primary" (click)="viewDetails()" type="button">See details</button>
+            <button id="btn-view" class="btn btn-primary" (click)="viewDetails()" type="button">See details</button>
           </div>
         </div>
       </div>

@@ -17,7 +17,6 @@ export class DetailsComponent implements OnInit {
   surface: number;
   atticCellar: number;
   piano: boolean;
-  packHelpful: boolean;
   price: number;
   id: string;
   priceDistance: number;
@@ -41,7 +40,6 @@ export class DetailsComponent implements OnInit {
       this.surface = res.surface;
       this.atticCellar = res.atticCellar;
       this.piano = res.piano;
-      this.packHelpful = res.packHelpful;
 
       this.priceDistance = res.priceDistance;
       this.surfaceTotal = res.totalSurface;

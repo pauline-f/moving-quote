@@ -50,7 +50,7 @@ export class QuotesService {
     );
   }
 
-  removeQuote(id: number) {
+  removeQuote(id: string) {
     firebase.database().ref('quote/' + this.getUserUid() + '/' + id + '/').remove();
   }
 

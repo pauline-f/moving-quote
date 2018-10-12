@@ -18,7 +18,6 @@ export class ViewComponent implements OnInit {
   surface: number;
   atticCellar: number;
   piano: boolean;
-  packHelpful: boolean;
   totalPrice: number;
   numOffer: string;
 
@@ -41,7 +40,6 @@ export class ViewComponent implements OnInit {
       this.surface = res.surface;
       this.atticCellar = res.atticCellar;
       this.piano = res.piano;
-      this.packHelpful = res.packHelpful;
       this.totalPrice = res.totalPrice;
   });
   }
