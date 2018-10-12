@@ -1,27 +1,21 @@
-# MoveITProject
+# MoveIT
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+MoveIT is a moving company. This web application allows users to create and display quotes.
+I decided to develop this web application with Angular, TypeScript and Bootstrap. I used Firebase as a backend, to save the user data and the quotes. 
+Angular is a good framework to develop dynamic web applications. TypeScript is a superset of JavaScript that is converted to JavaScript which can be understood by all the browsers. Bootstrap allows the creation of responsive user interfaces easily.
+Firebase provides a noSQL database, users management and web hosting. 
+I also choose these technologies because I already worked with when I learned Angular on my own projects.
 
-## Development server
+In the MoveIT web application, first the user creates an account or he logs in if he already has an account. 
+He can then create a new quote. For this, he types the data (name, mail, the two addresses, the distance between both, the surface, the surface of attic and cellar, and if he needs to move a piano). After that, he can see the price for the move. The price is calculated with the distance, the total surface and if the user has a piano or not.
+The user also can see the details of the price. 
+He can then see all the quotes he created, and see the details of them by clicking on it.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Features available:
+- Create user / login
+- Create a quote
+- See all the quotes the user has created
+- Display a quote
+- Delete a quote
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+DEMO: https://moveit-8b1d7.firebaseapp.com/
